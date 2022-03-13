@@ -1,0 +1,39 @@
+#include <iostream>
+#include <ctime> 
+#include <cstdlib> 
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "rus");
+	srand(time(NULL));
+	const int n = 8; // Количество элементов
+	int list[n] = { 0 }; // Инициализация массива
+	for (int i = 0; i < n; i++) { // Заполнение
+		list[i] = rand() % 201 - 100; // Заполнение числами от -100 до 100
+	}
+	cout << "Начальный массив: ";
+	for (int i = 0; i < n; i++) { // Вывод неотсортированного массива
+		cout << list[i] << " ";
+	}
+	cout << endl;
+
+	// Сортировка выбором
+	for (int i = 0; i < n - 1; i++) {
+		int imin = i;
+		for (int k = i+1; k < n; k++) { // Находим индекс максимального элемента
+			if (list[k] < list[imin]) {
+				imin = k;
+			}
+		}
+		if (imin != i) { // Меняем значения местами
+			int temp = list[i];
+			list[i] = list[imin];
+			list[imin] = temp;
+		}
+	}
+
+	cout << "Конечный массив: ";
+	for (int i = 0; i < n; i++) { // Вывод отсортированного массива
+		cout << list[i] << " ";
+	}
+}
